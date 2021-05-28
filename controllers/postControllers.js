@@ -1,4 +1,5 @@
 const Post = require('../models/Post')
+const User = require('../models/User')
 
 //@desc upload new post
 //@method POST /api/posts
@@ -43,14 +44,14 @@ const getPostById = async (req, res) =>{
 
 
 //@desc Add a like
-//@method PUT /api/posts/like/:postId
+//@method PUT /api/posts/like/:id
 //@access Private
 const addLike = async (req,res)=> {
     try {
-        const post = await Post.findById(req.params.postId);
+        const post = await Post.findById(req.params.id);
 
         //Check if already liked
-        if(post.likes.filter(like => like.user.toString === req.user.id).length > 0){
+        if(post.likes && post.likes.filter(like => like.user.toString === req.user.id).length > 0){
             return res.status(400).json({msg: 'Post already liked'});
         }
 
@@ -81,7 +82,6 @@ const addComment = async (req,res)=> {
             text: req.body.text,
             name: user.name,
             avatar: user.avatar,
-            user: req.user.id
         };
         post.comments.unshift(newComment);
 

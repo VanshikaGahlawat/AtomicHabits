@@ -9,7 +9,7 @@ const postSchema= mongoose.Schema({
     
     image:{
         type: String,
-        required:True
+        required:true
     },
     likes:[{
         user: {

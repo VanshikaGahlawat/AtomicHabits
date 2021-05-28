@@ -9,9 +9,6 @@ const activitySchema= mongoose.Schema({
         type: String,
         required: true
     },
-    snap:{
-        type: String
-    },
     time:{
         type: Date,
         default: Date.now

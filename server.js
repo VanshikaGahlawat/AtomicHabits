@@ -1,16 +1,16 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const userRoutes = require('./routes/userRoutes')
-const activityRoutes = require('./routes/activityRoutes')
 const feedRoutes = require('./routes/feedRoutes')
+const postRoutes = require('./routes/postRoutes')
 
 const app = express()
 app.use(express.json())
 dotenv.config()
 
 app.use('/api/users', userRoutes)
-app.use('api/activity', activityRoutes)
-app.use('/api/posts', feedRoutes)
+app.use('/api/feed', feedRoutes)
+app.use('/api/posts', postRoutes)
 
 
 

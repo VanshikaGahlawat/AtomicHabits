@@ -5,7 +5,7 @@ const User = require('../models/User')
 //access Private
 const getUserDetails = async (req,res)=>{
     try {
-      const user = await User.findById(req.params.id)
+      const user = await User.findById(req.user.id).select('-password')
       if(!user){
           res.status(404).json({msg:'User Not found'})
       }else {
@@ -22,7 +22,7 @@ const getUserDetails = async (req,res)=>{
 //access Private
 const updateUserDetails = async (req,res)=>{
     try {
-      const user = await User.findById(req.params.id)
+      const user = await User.findById(req.user.id).select('-password')
       if(!user){
           res.status(404).json({msg:'User Not found'})
       }else {
@@ -45,7 +45,7 @@ const updateUserDetails = async (req,res)=>{
 //access Private
 const deleteUser = async (req,res)=>{
     try {
-      const user = await User.findById(req.params.id)
+      const user = await User.findById(req.user.id).select('-password')
       if(!user){
           res.status(404).json({msg:'User Not found'})
       }else {
